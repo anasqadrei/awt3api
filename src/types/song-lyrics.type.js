@@ -1,4 +1,5 @@
 import {GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
+import SongType from './song.type'
 import UserType from './user.type'
 import resolvers from '../resolvers'
 
@@ -10,7 +11,10 @@ export default new GraphQLObjectType({
       type: GraphQLInt
     },
     song: {
-      type: GraphQLInt
+      type: SongType,
+      resolve: (root) => {
+        return resolvers.getSong({id: root.song})
+      }
     },
     content: {
       type: GraphQLString

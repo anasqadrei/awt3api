@@ -40,9 +40,6 @@ export default new GraphQLObjectType({
     songsImagesCount: {
       type: GraphQLInt
     },
-    songsVideosCount: {
-      type: GraphQLInt
-    },
     slug: {
       type: GraphQLString
     },

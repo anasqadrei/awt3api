@@ -32,7 +32,6 @@ const schema = new mongoose.Schema({
   songsDownloadsCount: Number, //total number of downloads of all of the artist's songs
   songsLikedCount: Number, //total number of liked songs of all of the artist's songs
   songsImagesCount: Number, //total number of images of the artist's songs
-  songsVideosCount: Number //total number of videos of the artist's songs
 })
 
 // Options
@@ -44,13 +43,12 @@ schema.virtual('slug').get(function() {
 })
 
 schema.virtual('url').get(function() {
-  return 'http://www.awtarika.com/artist/' + this._id + '/' + this.slug
+  return process.env.WEBSITE_URL + '/artist/' + this._id + '/' + this.slug
 })
 
 schema.virtual('defaultImage').get(function() {
   if (this.image) {
-    // return process.env.IMAGES_HOST + '/songs/' + this.image + '.jpg'
-    return 'https://s3-ap-southeast-2.amazonaws.com/awtphase2localhostdev.images' + '/songs/' + this.image + '.jpg'
+    return process.env.IMAGES_HOST + '/songs/' + this.image + '.jpg'
   } else {
     return null
   }

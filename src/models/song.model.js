@@ -69,12 +69,6 @@ const schema = new mongoose.Schema({
     }
   ],
   image: String,
-  videos: [
-    {
-      type: Number,
-      ref: 'SongVideo'
-    }
-  ],
   lyrics: {
     type: Number,
     ref: 'SongLyrics'
@@ -104,7 +98,7 @@ schema.virtual('slug').get(function() {
 })
 
 schema.virtual('url').get(function() {
-  return 'http://www.awtarika.com/song/' + this._id + '/' + this.slug
+  return process.env.WEBSITE_URL + '/song/' + this._id + '/' + this.slug
 })
 
 schema.virtual('defaultImage').get(function() {
@@ -186,22 +180,6 @@ schema.virtual('createdDateIso8601').get(function() {
 schema.method({})
 
 // Static Methods
-schema.statics = {
-  // /**
-  //  * Get Artist
-  //  */
-  // get(id) {
-  //   return this.findById(id)
-  //     .exec()
-  //     .then((artist) => {
-  //       if (artist) {
-  //         return artist
-  //       } else {
-  //         console.log('No artist')
-  //         return null
-  //       }
-  //     })
-  // },
-}
+schema.statics = {}
 
 export default mongoose.model('Song', schema)

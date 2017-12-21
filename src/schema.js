@@ -17,7 +17,7 @@ const RootQueryType = new GraphQLObjectType({
       //input type
       args: {
         id: {
-          type: GraphQLInt
+          type: new GraphQLNonNull(GraphQLInt)
         }
       },
       //function
@@ -32,7 +32,7 @@ const RootQueryType = new GraphQLObjectType({
       //input type
       args: {
         id: {
-          type: GraphQLInt
+          type: new GraphQLNonNull(GraphQLInt)
         }
       },
       //function
@@ -71,7 +71,7 @@ const RootQueryType = new GraphQLObjectType({
       //input type
       args: {
         id: {
-          type: GraphQLInt
+          type: new GraphQLNonNull(GraphQLInt)
         }
       },
       //function
@@ -86,7 +86,7 @@ const RootQueryType = new GraphQLObjectType({
       //input type
       args: {
         id: {
-          type: GraphQLInt
+          type: new GraphQLNonNull(GraphQLInt)
         }
       },
       //function

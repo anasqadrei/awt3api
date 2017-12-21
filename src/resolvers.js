@@ -50,14 +50,14 @@ export default {
     return await SongLyrics.findById(args.id)
   },
   getSong : async(args) => {
-    return await Song.findById(args.id).populate('artist') //artist is needed for the song slug
+    return await Song.findById(args.id).populate('artist')
   },
   getSongs : async(args) => {
     return await Song.find({
       _id: {
         $in: args.ids
       }
-    })
+    }).populate('artist')
   },
   getUser : async(args) => {
     return await User.findById(args.id)
