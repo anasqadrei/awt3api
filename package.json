@@ -1,8 +1,10 @@
 {
   "name": "awt3api",
   "version": "1.0.0",
-  "description": "graph ql endpoint",
+  "description": "awtarika graph ql endpoint",
   "author": "Anas Qadrei",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node",
     "build": "babel src -d dist",
