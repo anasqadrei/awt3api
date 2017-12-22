@@ -1,8 +1,8 @@
-import koa from 'koa'; // koa@2
-import koaRouter from 'koa-router'; // koa-router@next
-import koaBody from 'koa-bodyparser'; // koa-bodyparser@next
+import koa from 'koa';
+import koaRouter from 'koa-router';
+import koaBody from 'koa-bodyparser';
 import koaCors from 'kcors';
-import {graphqlKoa, graphiqlKoa} from 'graphql-server-koa';
+import {graphqlKoa, graphiqlKoa} from 'apollo-server-koa';
 
 import awtGraphQLSchema from './schema';
 
