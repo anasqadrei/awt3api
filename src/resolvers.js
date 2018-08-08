@@ -17,7 +17,7 @@ export default {
   getComment : async(args) => {
     return await Comment.findById(args.id)
   },
-  getComments : async(args) => {
+  getCommentsList : async(args) => {
     if (args.ids) {
       return await Comment.find({
         _id: {

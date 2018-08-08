@@ -41,7 +41,7 @@ const RootQueryType = new GraphQLObjectType({
       }
     },
     //operation comment
-    comment: {
+    commentsList: {
       //output type
       type: new GraphQLList(CommentType),
       //input type
@@ -61,7 +61,7 @@ const RootQueryType = new GraphQLObjectType({
       },
       //function
       resolve: (root, args) => {
-        return resolvers.getComments(args)
+        return resolvers.getCommentsList(args)
       }
     },
     //operation song
