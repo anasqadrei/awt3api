@@ -11,6 +11,14 @@ export default {
   getArtist : async(args) => {
     return await Artist.findById(args.id)
   },
+  getArtistsList : async(args) => {
+    let query = Artist.find()
+    if (args.sort) {
+      query.sort(args.sort)
+    }
+    query.skip((args.page - 1) * args.pageSize).limit(args.pageSize)
+    return await query
+  },
   getBlogpost : async(args) => {
     return await Blogpost.findById(args.id)
   },

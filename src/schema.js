@@ -25,6 +25,27 @@ const RootQueryType = new GraphQLObjectType({
         return resolvers.getArtist(args)
       }
     },
+    //operation artists list
+    artistsList: {
+      //output type
+      type: new GraphQLList(ArtistType),
+      //input type
+      args: {
+        page: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        pageSize: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        sort: {
+          type: GraphQLString
+        }
+      },
+      //function
+      resolve: (root, args) => {
+        return resolvers.getArtistsList(args)
+      }
+    },
     //operation blogpost
     blogpost: {
       //output type
@@ -40,7 +61,7 @@ const RootQueryType = new GraphQLObjectType({
         return resolvers.getBlogpost(args)
       }
     },
-    //operation comment
+    //operation comments list
     commentsList: {
       //output type
       type: new GraphQLList(CommentType),
