@@ -8,10 +8,10 @@ import Song from './models/song.model'
 import User from './models/user.model'
 
 export default {
-  getArtist : async(args) => {
+  getArtist: async (args) => {
     return await Artist.findById(args.id)
   },
-  getArtistsList : async(args) => {
+  getArtistsList: async (args) => {
     let query = Artist.find()
     if (args.sort) {
       query.sort(args.sort)
@@ -19,13 +19,13 @@ export default {
     query.skip((args.page - 1) * args.pageSize).limit(args.pageSize)
     return await query
   },
-  getBlogpost : async(args) => {
+  getBlogpost: async (args) => {
     return await Blogpost.findById(args.id)
   },
-  getComment : async(args) => {
+  getComment: async (args) => {
     return await Comment.findById(args.id)
   },
-  getCommentsList : async(args) => {
+  getCommentsList: async (args) => {
     if (args.ids) {
       return await Comment.find({
         _id: {
@@ -44,33 +44,42 @@ export default {
       return null
     }
   },
-  getCountry : async(args) => {
+  getCountry: async (args) => {
     return await Country.findById(args.id)
   },
-  getSongImages : async(args) => {
+  getSongImages: async (args) => {
     return await SongImage.find({
       _id: {
         $in: args.ids
       }
     })
   },
-  getSongLyrics : async(args) => {
+  getSongLyrics: async (args) => {
     return await SongLyrics.findById(args.id)
   },
-  getSong : async(args) => {
+  getSong: async (args) => {
     return await Song.findById(args.id).populate('artist')
   },
-  getSongs : async(args) => {
+  getSongs: async (args) => {
     return await Song.find({
       _id: {
         $in: args.ids
       }
     }).populate('artist')
   },
-  getUser : async(args) => {
+  getSongsListByArtist: async (args) => {
+    let query = Song.find({artist: args.artistId})
+    if (args.sort) {
+      query.sort(args.sort)
+    }
+    query.skip((args.page - 1) * args.pageSize).limit(args.pageSize)
+    console.log(query);
+    return await query
+  },
+  getUser: async (args) => {
     return await User.findById(args.id)
   },
-  getUsers : async(args) => {
+  getUsers: async (args) => {
     return await User.find({
       _id: {
         $in: args.ids

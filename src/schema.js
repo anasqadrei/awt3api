@@ -1,4 +1,11 @@
-import {GraphQLSchema, GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLList, GraphQLNonNull} from 'graphql'
+import {
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLString,
+  GraphQLList,
+  GraphQLNonNull
+} from 'graphql'
 import ArtistType from './types/artist.type'
 import BlogpostType from './types/blogpost.type'
 import CommentType from './types/comment.type'
@@ -98,6 +105,30 @@ const RootQueryType = new GraphQLObjectType({
       //function
       resolve: (root, args) => {
         return resolvers.getSong(args)
+      }
+    },
+    //operation songs list
+    songsListByArtist: {
+      //output type
+      type: new GraphQLList(SongType),
+      //input type
+      args: {
+        artistId: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        page: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        pageSize: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        sort: {
+          type: GraphQLString
+        }
+      },
+      //function
+      resolve: (root, args) => {
+        return resolvers.getSongsListByArtist(args)
       }
     },
     //operation user
