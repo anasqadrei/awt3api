@@ -7,6 +7,7 @@ import mongoose from 'mongoose'
 // db.songs.ensureIndex( { "playsCount": -1 } )
 // db.songs.ensureIndex( { "likesCount": -1 } )
 // db.songs.ensureIndex( { "title": 1 } )
+// db.songs.ensureIndex( { "uploader": 1 } )
 
 // Schema
 const schema = new mongoose.Schema({

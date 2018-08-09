@@ -149,6 +149,30 @@ const RootQueryType = new GraphQLObjectType({
         return resolvers.getRecentlyAddedSongs(args)
       }
     },
+    //operation uploaded songs list by user
+    uploadedSongsListByUser: {
+      //output type
+      type: new GraphQLList(SongType),
+      //input type
+      args: {
+        userId: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        page: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        pageSize: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        sort: {
+          type: GraphQLString
+        }
+      },
+      //function
+      resolve: (root, args) => {
+        return resolvers.getSongsListByUser(args)
+      }
+    },
     //operation user
     user: {
       //output type

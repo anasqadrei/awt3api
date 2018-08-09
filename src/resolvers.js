@@ -78,6 +78,14 @@ export default {
   getRecentlyAddedSongs: async (args) => {
     return await Song.find().sort('-_id').skip((args.page - 1) * args.pageSize).limit(args.pageSize)
   },
+  getSongsListByUser: async (args) => {
+    const query = Song.find({uploader: args.userId})
+    if (args.sort) {
+      query.sort(args.sort)
+    }
+    query.skip((args.page - 1) * args.pageSize).limit(args.pageSize)
+    return await query
+  },
   getUser: async (args) => {
     return await User.findById(args.id)
   },
