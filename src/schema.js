@@ -107,7 +107,7 @@ const RootQueryType = new GraphQLObjectType({
         return resolvers.getSong(args)
       }
     },
-    //operation songs list
+    //operation songs list by artist
     songsListByArtist: {
       //output type
       type: new GraphQLList(SongType),
@@ -129,6 +129,24 @@ const RootQueryType = new GraphQLObjectType({
       //function
       resolve: (root, args) => {
         return resolvers.getSongsListByArtist(args)
+      }
+    },
+    //operation recently added songs
+    recentlyAddedSongs: {
+      //output type
+      type: new GraphQLList(SongType),
+      //input type
+      args: {
+        page: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        pageSize: {
+          type: new GraphQLNonNull(GraphQLInt)
+        }
+      },
+      //function
+      resolve: (root, args) => {
+        return resolvers.getRecentlyAddedSongs(args)
       }
     },
     //operation user

@@ -12,7 +12,7 @@ export default {
     return await Artist.findById(args.id)
   },
   getArtistsList: async (args) => {
-    let query = Artist.find()
+    const query = Artist.find()
     if (args.sort) {
       query.sort(args.sort)
     }
@@ -68,13 +68,15 @@ export default {
     }).populate('artist')
   },
   getSongsListByArtist: async (args) => {
-    let query = Song.find({artist: args.artistId})
+    const query = Song.find({artist: args.artistId})
     if (args.sort) {
       query.sort(args.sort)
     }
     query.skip((args.page - 1) * args.pageSize).limit(args.pageSize)
-    console.log(query);
     return await query
+  },
+  getRecentlyAddedSongs: async (args) => {
+    return await Song.find().sort('-_id').skip((args.page - 1) * args.pageSize).limit(args.pageSize)
   },
   getUser: async (args) => {
     return await User.findById(args.id)
